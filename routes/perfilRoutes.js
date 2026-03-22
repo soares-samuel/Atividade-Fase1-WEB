@@ -1,10 +1,15 @@
 const express = require("express");
 const router = express.Router();
 const perfilController = require("../controllers/perfilController.js");
+const verificarToken = require("../middleware/auth");
 
-router.get("/perfil", perfilController.obterTodosPerfis);
-router.post("/perfil", perfilController.criarPerfil);
-router.delete("/perfil/:id", perfilController.deletarPerfil);
-router.put("/perfil/:id", perfilController.editarPerfil);
+router.use(verificarToken); // Protege todas as rotas abaixo
+
+
+// Rotas Protegidas
+router.get("/", verificarToken, perfilController.obterTodosPerfis);
+router.post("/", verificarToken, perfilController.criarPerfil);
+router.delete("/:id", verificarToken, perfilController.deletarPerfil);
+router.put("/:id", verificarToken, perfilController.editarPerfil);
 
 module.exports = router;

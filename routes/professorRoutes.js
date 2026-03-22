@@ -5,9 +5,10 @@ const verificarToken = require("../middleware/auth");
 
 router.use(verificarToken); // Protege todas as rotas abaixo
 
-router.get("/professor", professorController.obterTodosProfessores);
-router.post("/professor", professorController.criarProfessor);
-router.delete("/professor/:id", professorController.deletarProfessor);
-router.put("/professor/:id", professorController.editarProfessor);
+// Rotas Protegidas
+router.get("/", verificarToken, professorController.obterTodosProfessores);
+router.post("/", verificarToken, professorController.criarProfessor);
+router.delete("/:id", verificarToken,professorController.deletarProfessor);
+router.put("/:id", verificarToken, professorController.editarProfessor);
 
 module.exports = router;
