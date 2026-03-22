@@ -15,12 +15,12 @@ const tarefaRoutes = require('./routes/tarefaRoutes');
 const turmaRoutes = require('./routes/turmaRoutes');
 const authRoutes = require('./routes/authRoutes'); // Quinta alteração
 
-app.use(alunoRoutes);
-app.use(disciplinaRoutes);
-app.use(perfilRoutes);
-app.use(professorRoutes);
-app.use(tarefaRoutes);
-app.use(turmaRoutes);
-app.use(authRoutes); // Quinta alteração
+app.use('/aluno',alunoRoutes);
+app.use('/disciplina',disciplinaRoutes);
+app.use('/perfil',perfilRoutes);
+app.use('/professor',professorRoutes);
+app.use('/tarefa',tarefaRoutes);
+app.use('/turma',turmaRoutes);
+app.use('/auth',authRoutes); // Quinta alteração
 
 app.listen(3000, () => console.log("Servidor rodando na porta 3000"));

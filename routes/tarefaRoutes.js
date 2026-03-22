@@ -1,10 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const tarefaController = require("../controllers/tarefaController.js");
+const verificarToken = require("../middleware/auth");
 
-router.get("/tarefa", tarefaController.obterTodasTarefas);
-router.post("/tarefa", tarefaController.criarTarefa);
-router.delete("/tarefa/:id", tarefaController.deletarTarefa);
-router.put("/tarefa/:id", tarefaController.editarTarefa);
+router.use(verificarToken); // Protege todas as rotas abaixo
+
+// Rotas Protegidas
+router.get("/", verificarToken, tarefaController.obterTodasTarefas);
+router.post("/", verificarToken, tarefaController.criarTarefa);
+router.delete("/:id", verificarToken, tarefaController.deletarTarefa);
+router.put("/:id", verificarToken, tarefaController.editarTarefa);
 
 module.exports = router;
