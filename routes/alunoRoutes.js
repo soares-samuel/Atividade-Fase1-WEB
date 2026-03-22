@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const alunoController = require("../controllers/alunoController.js");
+const verificarToken = require("../middlewares/auth");
 
 // Rota Pública
 router.post("/aluno", alunoController.criarAluno);

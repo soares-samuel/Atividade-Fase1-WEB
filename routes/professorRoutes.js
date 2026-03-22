@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const professorController = require("../controllers/professorController.js");
+const verificarToken = require("../middlewares/auth");
 
 router.use(verificarToken); // Protege todas as rotas abaixo
 
