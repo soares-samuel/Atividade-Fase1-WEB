@@ -5,6 +5,7 @@ const express = require('express');
 const app = express();
 require('./database/db'); 
 
+app.use(express.json());
 
 const alunoRoutes = require('./routes/alunoRoutes');
 const disciplinaRoutes = require('./routes/disciplinaRoutes');
@@ -14,9 +15,6 @@ const tarefaRoutes = require('./routes/tarefaRoutes');
 const turmaRoutes = require('./routes/turmaRoutes');
 const authRoutes = require('./routes/authRoutes'); // Quinta alteração
 
-
-app.use(express.json());
-
 app.use(alunoRoutes);
 app.use(disciplinaRoutes);
 app.use(perfilRoutes);
@@ -25,7 +23,4 @@ app.use(tarefaRoutes);
 app.use(turmaRoutes);
 app.use(authRoutes); // Quinta alteração
 
-const PORT = 3000;
-app.listen(PORT, () => {
-    console.log(`Servidor rodando na porta ${PORT}`);
-});
+app.listen(3000, () => console.log("Servidor rodando na porta 3000"));

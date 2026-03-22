@@ -2,9 +2,12 @@ const express = require("express");
 const router = express.Router();
 const alunoController = require("../controllers/alunoController.js");
 
-router.get("/aluno", alunoController.obterTodosAlunos);
+// Rota Pública
 router.post("/aluno", alunoController.criarAluno);
-router.delete("/aluno/:id", alunoController.deletarAluno);
-router.put("/aluno/:id", alunoController.editarAluno);
+
+// Rotas Protegidas
+router.get("/aluno", verificarToken, alunoController.obterTodosAlunos);
+router.delete("/aluno/:id", verificarToken, alunoController.deletarAluno);
+router.put("/aluno/:id", verificarToken, alunoController.editarAluno);
 
 module.exports = router;

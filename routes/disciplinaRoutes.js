@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const disciplinaController = require("../controllers/disciplinaController.js");
 
+router.use(verificarToken); // Protege todas as rotas abaixo
+
 router.get("/disciplina", disciplinaController.obterTodasDisciplinas);
 router.post("/disciplina", disciplinaController.criarDisciplina);
 router.delete("/disciplina/:id", disciplinaController.deletarDisciplina);
