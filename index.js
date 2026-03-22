@@ -12,6 +12,8 @@ const perfilRoutes = require('./routes/perfilRoutes');
 const professorRoutes = require('./routes/professorRoutes');
 const tarefaRoutes = require('./routes/tarefaRoutes');
 const turmaRoutes = require('./routes/turmaRoutes');
+const authRoutes = require('./routes/authRoutes'); // Quinta alteração
+
 
 app.use(express.json());
 
@@ -21,6 +23,7 @@ app.use(perfilRoutes);
 app.use(professorRoutes);
 app.use(tarefaRoutes);
 app.use(turmaRoutes);
+app.use(authRoutes); // Quinta alteração
 
 const PORT = 3000;
 app.listen(PORT, () => {
