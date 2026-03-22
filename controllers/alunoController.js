@@ -1,40 +1,60 @@
+// Segundo ajuste é na importação dos models que estão sendo requisitados
+const Aluno = require("../models/aluno"); 
+const Perfil = require("../models/perfil"); 
 
 const criarAluno = async (req, res) => {
-  const { nome, idade } = req.body;
+  try {
+    const { nome, idade } = req.body;
+    const novoAluno = new Aluno({ nome, idade });
+    await novoAluno.save();
 
-  const novoAluno = new Aluno({
-    nome,
-    idade,
-  });
-
-  await novoAluno.save();
-
-  res.json({
-    message: "Aluno criado com sucesso!",
-    aluno: novoAluno,
-  });
+    res.status(201).json({ 
+      message: "Aluno criado com sucesso!",
+      aluno: novoAluno,
+    });
+  } catch (error) {
+    res.status(400).json({ message: "Erro ao criar aluno", error: error.message });
+  }
 };
 
 const obterTodosAlunos = async (req, res) => {
-  const alunos = await Aluno.find().populate('perfil');
-  res.json(alunos);
+  try {
+    const alunos = await Aluno.find().populate('perfil');
+    res.status(200).json(alunos);
+  } catch (error) {
+    res.status(500).json({ message: "Erro ao buscar alunos", error: error.message });
+  }
 };
 
 const deletarAluno = async (req, res) => {
-  const { id } = req.params;
+  try {
+    const { id } = req.params;
+    const resultado = await Aluno.deleteOne({ _id: id });
+    
+    if (resultado.deletedCount === 0) {
+      return res.status(404).json({ message: "Aluno não encontrado" });
+    }
 
-  await Aluno.deleteOne({ _id: id });
-  res.json({ message: 'Aluno removido com sucesso!' });
+    res.status(200).json({ message: 'Aluno removido com sucesso!' });
+  } catch (error) {
+    res.status(500).json({ message: "Erro ao deletar aluno", error: error.message });
+  }
 };
 
 const editarAluno = async (req, res) => {
-  const { id } = req.params;
-  const { nome, idade } = req.body;
+  try {
+    const { id } = req.params;
+    const { nome, idade } = req.body;
+    const aluno = await Aluno.findByIdAndUpdate(id, { nome, idade }, { new: true });
+    
+    if (!aluno) {
+      return res.status(404).json({ message: "Aluno não encontrado" });
+    }
 
-  let aluno = await Aluno.findByIdAndUpdate(id, { nome, idade });
-  res.status(200).json({
-    message: 'Aluno atualizado com sucesso!',
-    aluno,
-  });
+    res.status(200).json({ message: 'Aluno atualizado com sucesso!', aluno });
+  } catch (error) {
+    res.status(400).json({ message: "Erro ao editar aluno", error: error.message });
+  }
 };
 
+module.exports = { criarAluno, obterTodosAlunos, deletarAluno, editarAluno };
