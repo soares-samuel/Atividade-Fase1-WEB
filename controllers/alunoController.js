@@ -4,8 +4,17 @@ const Perfil = require("../models/perfil");
 
 const criarAluno = async (req, res) => {
   try {
-    const { nome, idade } = req.body;
-    const novoAluno = new Aluno({ nome, idade });
+    // Adicionando novos campos em aluno
+    const { nome, idade, email, senha, turmas } = req.body;
+    
+    const novoAluno = new Aluno({ 
+      nome, 
+      idade, 
+      email, 
+      senha, 
+      turmas 
+    });
+    
     await novoAluno.save();
 
     res.status(201).json({ 
