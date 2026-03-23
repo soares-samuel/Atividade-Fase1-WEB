@@ -29,7 +29,7 @@ const obterTodosPerfis = async (req, res) => {
 const deletarPerfil = async (req, res) => {
   try {
     const { id } = req.params;
-    const resultado = await Perfil.deleteOne({ _id: id });
+    const resultado = await Perfil.findByIdAndDelete(id);
     if (resultado.deletedCount === 0) return res.status(404).json({ message: "Perfil não encontrado" });
     res.status(200).json({ message: "Perfil removido com sucesso!" });
   } catch (error) {

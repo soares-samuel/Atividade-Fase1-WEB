@@ -16,7 +16,7 @@ const criarTurma = async (req, res) => {
 
 const obterTodasTurmas = async (req, res) => {
   try {
-    const turmas = await Turma.find().populate('alunos professor');
+    const turmas = await Turma.find().populate('alunos').populate('professor');
     res.status(200).json(turmas);
   } catch (error) {
     res.status(500).json({ message: "Erro ao buscar turmas", error: error.message });
@@ -26,7 +26,7 @@ const obterTodasTurmas = async (req, res) => {
 const deletarTurma = async (req, res) => {
   try {
     const { id } = req.params;
-    const resultado = await Turma.deleteOne({ _id: id });
+    const resultado = await Turma.findByIdAndDelete(id);
     if (resultado.deletedCount === 0) return res.status(404).json({ message: "Turma não encontrada" });
     res.status(200).json({ message: "Turma removida com sucesso!" });
   } catch (error) {

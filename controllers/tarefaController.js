@@ -25,7 +25,7 @@ const obterTodasTarefas = async (req, res) => {
 const deletarTarefa = async (req, res) => {
   try {
     const { id } = req.params;
-    const resultado = await Tarefa.deleteOne({ _id: id });
+    const resultado = await Tarefa.deleteOne(id);
     if (resultado.deletedCount === 0) return res.status(404).json({ message: "Tarefa não encontrada" });
     res.status(200).json({ message: "Tarefa removida com sucesso!" });
   } catch (error) {
