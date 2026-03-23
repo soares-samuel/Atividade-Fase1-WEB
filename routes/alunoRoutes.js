@@ -3,11 +3,12 @@ const router = express.Router();
 const alunoController = require("../controllers/alunoController.js");
 const verificarToken = require("../middleware/auth");
 
+// Todas as rotas de aluno protegidas
+router.use(verificarToken);
 
-// Rotas Protegidas
-router.post("/", verificarToken, alunoController.criarAluno);
-router.get("/", verificarToken, alunoController.obterTodosAlunos);
-router.delete("/:id", verificarToken, alunoController.deletarAluno);
-router.put("/:id", verificarToken, alunoController.editarAluno);
+router.get("/", alunoController.obterTodosAlunos);
+router.post("/", alunoController.criarAluno);
+router.delete("/:id", alunoController.deletarAluno);
+router.put("/:id", alunoController.editarAluno);
 
 module.exports = router;
