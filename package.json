@@ -1,4 +1,3 @@
-
 {
   "name": "avaliacaoprimeirafase",
   "version": "1.0.0",
@@ -12,9 +11,18 @@
   "description": "",
   "dependencies": {
     "bcryptjs": "^3.0.3",
-    "express": "^4.21.2",
+    "express": "^4.22.1",
     "jsonwebtoken": "^9.0.3",
-    "mongoose": "^8.12.1",
+    "mongoose": "^8.23.0",
     "nodemon": "^3.1.9"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/soares-samuel/Atividade-Fase1-WEB.git"
+  },
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/soares-samuel/Atividade-Fase1-WEB/issues"
+  },
+  "homepage": "https://github.com/soares-samuel/Atividade-Fase1-WEB#readme"
 }

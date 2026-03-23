@@ -4,3 +4,4 @@ André: Ajuste no Tarefa.js adicionando aspas no nome do model que faz relação
 André: Remoção da linha const Tarefa = require("./tarefa.js"); pois para o relacionamento o que importa é apenas o que está escrito no campo ref
 André: Ajuste de relacionamentos entre os models e identificação dos relacionamentos 
 André: Ajuste de rotas para simplificar URL e deixar tudo dentro do padrão, também foi adicionado a verificação de token para todas as rotas que não podem ficar desprotegidas
+André: ajuste de controllers para obedercer relacionamentos feitos nos models

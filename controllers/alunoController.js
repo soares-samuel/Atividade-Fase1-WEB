@@ -19,8 +19,8 @@ const criarAluno = async (req, res) => {
 
 const obterTodosAlunos = async (req, res) => {
   try {
-    const alunos = await Aluno.find().populate('perfil');
-    res.status(200).json(alunos);
+    const alunos = await Aluno.find().populate('perfil').populate('turmas').populate('tarefas');
+    res.status(200).json({alunos, message:"Alunos encontrados com sucesso"});
   } catch (error) {
     res.status(500).json({ message: "Erro ao buscar alunos", error: error.message });
   }
@@ -29,7 +29,7 @@ const obterTodosAlunos = async (req, res) => {
 const deletarAluno = async (req, res) => {
   try {
     const { id } = req.params;
-    const resultado = await Aluno.deleteOne({ _id: id });
+    const resultado = await Aluno.findByIdAndDelete(id);
     
     if (resultado.deletedCount === 0) {
       return res.status(404).json({ message: "Aluno não encontrado" });
@@ -51,7 +51,7 @@ const editarAluno = async (req, res) => {
       return res.status(404).json({ message: "Aluno não encontrado" });
     }
 
-    res.status(200).json({ message: 'Aluno atualizado com sucesso!', aluno });
+    res.status(200).json({ message: "Aluno atualizado com sucesso!", aluno });
   } catch (error) {
     res.status(400).json({ message: "Erro ao editar aluno", error: error.message });
   }
