@@ -1,10 +1,11 @@
 // Segundo ajuste é na importação dos models que estão sendo requisitados
 const Disciplina = require("../models/disciplina"); 
 const Tarefa = require("../models/tarefa"); 
+const Professor = require("../models/professor");
 
 const criarDisciplina = async (req, res) => {
   try {
-    const { nome, descricao, dataInicio, dataFim, tarefasIds, professoresIds } = req.body;
+    const { nome, descricao, dataInicio, dataFim, tarefas, professores } = req.body;
 
     const novaDisciplina = new Disciplina({
       nome,
@@ -19,7 +20,7 @@ const criarDisciplina = async (req, res) => {
 
     // Atualiza as tarefas e professores associadas à disciplina
     await Tarefa.updateMany(
-      { _id: { $in: tarefasIds } },
+      { _id: { $in: tarefas } },
       { $push: { disciplinas: novaDisciplina._id } }
     );
     await Professor.updateMany(
@@ -63,7 +64,7 @@ const deletarDisciplina = async (req, res) => {
 const editarDisciplina = async (req, res) => {
   try {
     const { id } = req.params;
-    const { nome, descricao, dataInicio, dataFim, tarefasIds , professores} = req.body;
+    const { nome, descricao, dataInicio, dataFim, tarefas , professores} = req.body;
 
     let disciplina = await Disciplina.findByIdAndUpdate(
       id, 

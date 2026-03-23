@@ -3,7 +3,7 @@ const Professor = require("../models/professor");
 
 const criarProfessor = async (req, res) => {
   try {
-    const { nome, idade, disciplinasIds, turmas } = req.body;
+    const { nome, idade, disciplinasIds, turmasIds } = req.body;
     const novoProfessor = new Professor({ nome, idade, disciplinas: disciplinasIds, turmas: turmasIds });
     await novoProfessor.save();
     res.status(201).json({ message: "Professor criado com sucesso!", professor: novoProfessor });
@@ -35,8 +35,8 @@ const deletarProfessor = async (req, res) => {
 const editarProfessor = async (req, res) => {
   try {
     const { id } = req.params;
-    const { nome, idade, disciplinasIds } = req.body;
-    const professor = await Professor.findByIdAndUpdate(id, { nome, idade, disciplinas: disciplinasIds, turmas:turmasIds }, { new: true });
+    const { nome, idade, disciplinas, turmas } = req.body;
+    const professor = await Professor.findByIdAndUpdate(id, { nome, idade, disciplinas, turmas }, { new: true });
     if (!professor) return res.status(404).json({ message: "Professor não encontrado" });
     res.status(200).json({ message: "Professor atualizado com sucesso!", professor });
   } catch (error) {

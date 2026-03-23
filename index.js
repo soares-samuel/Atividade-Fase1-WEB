@@ -1,6 +1,6 @@
 // primeira alteração no código foi criar o arquivo index.js, para que o servidor se incie 
 // e também para conectar as rotas
-
+require('dotenv').config();
 const express = require('express');
 const app = express();
 require('./database/db'); 

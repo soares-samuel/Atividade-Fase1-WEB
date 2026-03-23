@@ -4,8 +4,8 @@ const Perfil = require("../models/perfil");
 
 const criarAluno = async (req, res) => {
   try {
-    const { nome, idade } = req.body;
-    const novoAluno = new Aluno({ nome, idade });
+    const { nome, idade, email, senha } = req.body;
+    const novoAluno = new Aluno({ nome, idade, email, senha });
     await novoAluno.save();
 
     res.status(201).json({ 

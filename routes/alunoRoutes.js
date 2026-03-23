@@ -5,7 +5,7 @@ const verificarToken = require("../middleware/auth");
 
 
 // Rotas Protegidas
-router.post("/", verificarToken, alunoController.criarAluno);
+router.post("/", alunoController.criarAluno);
 router.get("/", verificarToken, alunoController.obterTodosAlunos);
 router.delete("/:id", verificarToken, alunoController.deletarAluno);
 router.put("/:id", verificarToken, alunoController.editarAluno);
