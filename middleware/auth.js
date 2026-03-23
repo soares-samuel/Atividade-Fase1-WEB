@@ -10,7 +10,7 @@ const verificarToken = (req, res, next) => {
   }
 
   try {
-    const verificado = jwt.verify(token, "CHAVE_SECRETA_UNIFACISA");
+    const verificado = jwt.verify(token, JWT_SECRET);
     req.user = verificado;
     next(); 
   } catch (error) {
