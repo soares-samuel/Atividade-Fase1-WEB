@@ -1,3 +1,8 @@
 1º:
     Error: Cannot find module 'express'
 
+Daqui pra frente foi erro de lógica ou troca de nomes de variáveis.
+
+No nosso controller houveram trocas de nomes na pressa de fazer e isso gerou erro ao testar no postman.
+Também tivemos erro de autorização por não haver um coordenador ou membro que tivesse acesso a todos as rotas explicitamente, então usamos o que estava no código já feito por questão de tempo e entregamos como se o aluno fosse o admin do sistema
+Enfrentamos alguns desencontros de segurança com o .env, no qual nas versões anteriores a URL do servidor era passada diretamente pelo db.js então criamos o nosso .env

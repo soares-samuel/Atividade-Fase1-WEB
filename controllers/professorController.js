@@ -3,8 +3,8 @@ const Professor = require("../models/professor");
 
 const criarProfessor = async (req, res) => {
   try {
-    const { nome, idade, disciplinasIds, turmasIds } = req.body;
-    const novoProfessor = new Professor({ nome, idade, disciplinas: disciplinasIds, turmas: turmasIds });
+    const { nome, idade, disciplinas, turmas } = req.body;
+    const novoProfessor = new Professor({ nome, idade, disciplinas, turmas });
     await novoProfessor.save();
     res.status(201).json({ message: "Professor criado com sucesso!", professor: novoProfessor });
   } catch (error) {

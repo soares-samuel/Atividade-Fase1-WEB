@@ -4,8 +4,8 @@ const Disciplina = require("../models/disciplina");
 
 const criarTarefa = async (req, res) => {
   try {
-    const { titulo, alunoId, disciplinasIds } = req.body;
-    const novaTarefa = new Tarefa({ titulo, aluno: alunoId, disciplinas: disciplinasIds });
+    const { titulo, aluno, disciplinas } = req.body;
+    const novaTarefa = new Tarefa({ titulo, aluno, disciplinas });
     await novaTarefa.save();
     res.status(201).json({ message: "Tarefa criada com sucesso!", tarefa: novaTarefa });
   } catch (error) {
