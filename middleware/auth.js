@@ -1,4 +1,3 @@
-// Sexta modificação: criando arquivo de validação de token 
 const jwt = require("jsonwebtoken");
 
 const verificarToken = (req, res, next) => {
@@ -10,7 +9,7 @@ const verificarToken = (req, res, next) => {
   }
 
   try {
-    const verificado = jwt.verify(token, JWT_SECRET);
+    const verificado = jwt.verify(token, process.env.JWT_SECRET);
     req.user = verificado;
     next(); 
   } catch (error) {

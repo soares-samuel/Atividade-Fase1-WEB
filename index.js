@@ -5,6 +5,9 @@ const express = require('express');
 const app = express();
 require('./database/db'); 
 
+require('dotenv').config();
+const express = require('express');
+
 app.use(express.json());
 
 const alunoRoutes = require('./routes/alunoRoutes');
